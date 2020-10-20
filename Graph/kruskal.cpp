@@ -55,6 +55,7 @@ int main(){
 		if(can_merge){
 			cnt++;
 			sum+=w;
+			printf("choose node %d %d weight %d\n",u,v,w);
 		}
 		idx++;
 	}
