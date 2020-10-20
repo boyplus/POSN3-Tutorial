@@ -7,6 +7,7 @@ int dist[maxN][maxN];
 int main(){
 	int n,m,u,v,w;
 	scanf("%d %d",&n,&m);
+	//initial dist from node u to v to INF except dist from node u to u is 0
 	for(int i=0;i<n;i++){
 		for(int j=0;j<n;j++){
 			if(i == j) dist[i][j] = 0;
@@ -18,6 +19,8 @@ int main(){
 		dist[u][v] = w;
 		dist[v][u] = w;
 	}
+	//dist from i to j can be calculate by i to k + k to j
+	//and compare with dist from i to j (choose the minimum) 
 	for(int k=0;k<n;k++){
 		for(int i=0;i<n;i++){
 			for(int j=0;j<n;j++){
