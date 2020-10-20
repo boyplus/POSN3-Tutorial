@@ -18,7 +18,7 @@ const int maxN = 10001;
 vector<graph> vec;
 int parent[maxN];
 int root(int u){
-	//if already found the representative node, can return that node
+	//if we already found the representative node, can return that node
 	if(u == parent[u]) return u;
 	//find the representative node by passing the parent of that node
 	//and assign to its parent to reduce time

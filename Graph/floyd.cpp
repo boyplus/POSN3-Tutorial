@@ -7,7 +7,7 @@ int dist[maxN][maxN];
 int main(){
 	int n,m,u,v,w;
 	scanf("%d %d",&n,&m);
-	//initial dist from node u to v to INF except dist from node u to u is 0
+	//init dist from node u to v to INF except dist from node u to u is 0
 	for(int i=0;i<n;i++){
 		for(int j=0;j<n;j++){
 			if(i == j) dist[i][j] = 0;

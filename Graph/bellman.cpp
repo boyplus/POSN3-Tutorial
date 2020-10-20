@@ -18,12 +18,12 @@ int dist[maxN];
 int main(){
 	int n,m,u,v,w,s,e;
 	scanf("%d %d %d %d",&n,&m,&s,&e);
-	//we store the data in form of edges list
+	//we store the graph in form of edges list
 	for(int i=0;i<m;i++){
 		scanf("%d %d %d",&u,&v,&w);
 		vec.push_back(graph(u,v,w));
 	}
-	//initial the dist from source to that node are all INF
+	//init the dist from source to every nodes are all INF
 	for(int i=0;i<n;i++){
 		dist[i] = INF;
 	}
@@ -39,9 +39,7 @@ int main(){
 		//we keep doint this until there is no edge to choose
 		found_change = false;
 		for(int i=0;i<m;i++){
-			int u = vec[i].u;
-			int v = vec[i].v;
-			int w = vec[i].w;
+			int u = vec[i].u,v = vec[i].v,w = vec[i].w;
 			int newWeight = dist[u]+w;
 			if(newWeight < dist[v]){
 				dist[v] = newWeight;
@@ -64,7 +62,6 @@ int main(){
 	printf("%d\n",dist[e]);
 	return 0;
 }
-/*
 /*
 9 14
 0 1 4
