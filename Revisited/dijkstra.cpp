@@ -22,8 +22,8 @@ public:
 };
 vector<graph> vec[maxN];
 int main(){
-	int n,m,u,v,w;
-	scanf("%d %d",&n,&m);
+	int n,m,s,e,u,v,w,sum = 0;
+	scanf("%d %d %d %d",&n,&m,&s,&e);
 	for(int i=0;i<m;i++){
 		scanf("%d %d %d",&u,&v,&w);
 		vec[u].push_back(graph(v,w));
@@ -32,29 +32,27 @@ int main(){
 	for(int i=0;i<n;i++){
 		dist[i] = INF;
 	}
-	int start = 0,sum = 0;
-	dist[start] = 0;
+	dist[s] = 0;
 	priority_queue<graph,vector<graph>,cmp> pq;
-	pq.push(graph(start,dist[start]));
+	pq.push(graph(s,dist[s]));
 	while(!pq.empty()){
 		int u = pq.top().v, d = pq.top().w;
 		pq.pop();
 		if(visited[u]) continue;
-		printf("choose node %d weight = %d\n",u,d);
 		visited[u] = true;
-		sum+=dist[u];
 		for(int i=0;i<vec[u].size();i++){
-			int v = vec[u][i].v,w = vec[u][i].w;
-			if(visited[v] == false && w < dist[v]){
-				dist[v] = w;
+			int v = vec[u][i].v, w = vec[u][i].w;
+			int newDist = dist[u] + w;
+			if(newDist < dist[v] && visited[v] == false){
+				dist[v] = newDist;
 				pq.push(graph(v,dist[v]));
 			}
 		}
 	}
-	printf("%d\n",sum);
+	printf("%d\n",dist[e]);
 }
 /*
-9 14
+9 14 0 8
 0 1 4
 0 7 8
 1 7 11

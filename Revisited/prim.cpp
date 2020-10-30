@@ -22,7 +22,7 @@ public:
 };
 vector<graph> vec[maxN];
 int main(){
-	int n,m,u,v,w;
+	int n,m,u,v,w,sum = 0;
 	scanf("%d %d",&n,&m);
 	for(int i=0;i<m;i++){
 		scanf("%d %d %d",&u,&v,&w);
@@ -32,21 +32,21 @@ int main(){
 	for(int i=0;i<n;i++){
 		dist[i] = INF;
 	}
-	int start = 0,sum = 0;
-	dist[start] = 0;
+	dist[0] = 0;
 	priority_queue<graph,vector<graph>,cmp> pq;
-	pq.push(graph(start,dist[start]));
+	pq.push(graph(0,0));
 	while(!pq.empty()){
-		int u = pq.top().v, d = pq.top().w;
+		int u = pq.top().v, w = pq.top().w;
 		pq.pop();
 		if(visited[u]) continue;
-		printf("choose node %d weight = %d\n",u,d);
 		visited[u] = true;
 		sum+=dist[u];
+		printf("in %d %d\n",u,w);
 		for(int i=0;i<vec[u].size();i++){
-			int v = vec[u][i].v,w = vec[u][i].w;
-			if(visited[v] == false && w < dist[v]){
-				dist[v] = w;
+			int v = vec[u][i].v;
+			int d = vec[u][i].w;
+			if(d < dist[v] && visited[v] == false){
+				dist[v] = d;
 				pq.push(graph(v,dist[v]));
 			}
 		}
